@@ -414,8 +414,10 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "UTILITY", .isfloating = 1)
 	RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
-	RULE(.class = "Gimp", .tags = 1 << 4)
 	RULE(.class = "Firefox", .tags = 1 << 7)
+	RULE(.class = "telegram-desktop", .tags = 1 << 4)
+	RULE(.class = "cmus", .tags = 1 << 5)
+	RULE(.class = "Microsoft Teams - Preview", .tags = 1 << 5)
 	#if SCRATCHPADS_PATCH
 	RULE(.instance = "spterm", .tags = SPTAG(0), .isfloating = 1)
 	#endif // SCRATCHPADS_PATCH
@@ -784,13 +786,17 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[] = { "chromium", NULL };
 static const char *browserTwocmd[] = { "qutebrowser", NULL };
 static const char *fmcmd[] = { "st", "-e", "ranger", NULL };
+static const char *cmuscmd[] = { "st", "-e", "cmus", NULL };
+static const char *telegramcmd[] = { "telegram-desktop", NULL };
+static const char *teamscmd[] = { "teams", NULL };
 static const char *volup[]    = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL};
 static const char *voldown[]  = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL};
 static const char *volmute[]  = {"pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL};
 static const char *volpause[]  = {"playerctl", "play-pause", NULL};
 static const char *playnext[]  = {"playerctl", "next", NULL};
 static const char *playprev[]  = {"playerctl", "previous", NULL};
-static const char *scrot[] = {"scrot", "~/Pictures/Screenshots/%Y-%m-%d-screenshot.png", NULL};
+static const char *scrotselect[] = {"scrot", "--select", "/home/cb/Pictures/Screenshots/screenshot.png", NULL};
+static const char *scrot[] = {"scrot", "/home/cb/Pictures/Screenshots/screenshot.png", NULL};
 static const char *backlightup[] = {"xbacklight", "-inc", "10", NULL};
 static const char *backlightdown[] = {"xbacklight", "-dec", "10", NULL};
 
@@ -1185,13 +1191,17 @@ static Key keys[] = {
 	#endif // MPDCONTROL_PATCH
 	{ 0,							XF86XK_AudioRaiseVolume, spawn,		   {.v = volup} },
 	{ 0,							XF86XK_AudioLowerVolume, spawn,		   {.v = voldown} },
-	{ 0,							XF86XK_AudioMute, spawn,				   {.v = volmute} },
-	{ 0,							XF86XK_AudioPlay, spawn,				   {.v = volpause} },
+	{ 0,							XF86XK_AudioMute,		 spawn,		   {.v = volmute} },
+	{ 0,							XF86XK_AudioPlay,		 spawn,		   {.v = volpause} },
 	{ MODKEY,						XF86XK_AudioRaiseVolume, spawn,		   {.v = playnext} },
 	{ MODKEY,						XF86XK_AudioLowerVolume, spawn,		   {.v = playprev} },
-	{ MODKEY,						XK_p,			spawn,				   {.v = scrot} },
-	{ 0,							XF86XK_MonBrightnessUp,	spawn,			{.v = backlightup} },
-	{ 0,							XF86XK_MonBrightnessDown,	spawn,		{.v = backlightdown} },
+	{ MODKEY,						XK_p,			spawn,				   {.v = scrotselect} },
+	{ MODKEY,						XK_Print,		spawn,				   {.v = scrot} },
+	{ 0,							XF86XK_MonBrightnessUp,	spawn,		   {.v = backlightup} },
+	{ 0,							XF86XK_MonBrightnessDown, spawn,	   {.v = backlightdown} },
+	{ MODKEY,						XK_4,			spawn,				   {.v = cmuscmd} },
+	{ MODKEY,						XK_5,			spawn,				   {.v = telegramcmd} },
+	{ MODKEY,						XK_6,			spawn,				   {.v = teamscmd} },
 	TAGKEYS(                        XK_1,                                  0)
 	TAGKEYS(                        XK_2,                                  1)
 	TAGKEYS(                        XK_3,                                  2)
