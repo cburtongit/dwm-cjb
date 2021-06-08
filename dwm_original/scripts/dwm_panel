@@ -1,5 +1,0 @@
-#!/bin/bash
-
-xsetroot -name "
-$(acpi -b | awk -F", " '{print$2}') 
-$(date '+ %A %d/%m/%y   %H:%M')"
