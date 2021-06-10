@@ -102,9 +102,9 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 #endif // MONOCLE_LAYOUT
 #endif // BAR_TABGROUPS_PATCH
 #if BAR_PANGO_PATCH
-static const char font[]                 = "DejaVuSansMono Bold 10";
+static const char font[]                 = "DejaVu Sans Mono Bold 10";
 #else
-static const char *fonts[]               = { "DejaVuSansMono:size=12", "JetBrainsMono:size=12"};
+static const char *fonts[]               = { "DejaVuSansMono:Bold:size=12", "JetBrainsMono:size=12"};
 #endif // BAR_PANGO_PATCH
 static const char dmenufont[]            = "JetBrainsMono:size=10";
 
@@ -112,35 +112,35 @@ static char c000000[]                    = "#000000"; // placeholder value
 
 #if BAR_FLEXWINTITLE_PATCH
 #endif // BAR_FLEXWINTITLE_PATCH
-static char normfgcolor[]                = "#bbbbbb";
-static char normbgcolor[]                = "#222222";
-static char normbordercolor[]            = "#444444";
-static char normfloatcolor[]             = "#db8fd9";
+static char normfgcolor[]                = "#ebdbb2";
+static char normbgcolor[]                = "#282828";
+static char normbordercolor[]            = "#3c3836";
+static char normfloatcolor[]             = "#d65d0e";
 
-static char selfgcolor[]                 = "#eeeeee";
-static char selbgcolor[]                 = "#005577";
-static char selbordercolor[]             = "#005577";
-static char selfloatcolor[]              = "#005577";
+static char selfgcolor[]                 = "#ebdbb2";
+static char selbgcolor[]                 = "#458588";
+static char selbordercolor[]             = "#458588";
+static char selfloatcolor[]              = "#458588";
 
-static char titlenormfgcolor[]           = "#bbbbbb";
-static char titlenormbgcolor[]           = "#222222";
-static char titlenormbordercolor[]       = "#444444";
-static char titlenormfloatcolor[]        = "#db8fd9";
+static char titlenormfgcolor[]           = "#ebdbb2";
+static char titlenormbgcolor[]           = "#282828";
+static char titlenormbordercolor[]       = "#3c3836";
+static char titlenormfloatcolor[]        = "#d65d0e";
 
-static char titleselfgcolor[]            = "#eeeeee";
-static char titleselbgcolor[]            = "#005577";
-static char titleselbordercolor[]        = "#005577";
-static char titleselfloatcolor[]         = "#005577";
+static char titleselfgcolor[]            = "#ebdbb2";
+static char titleselbgcolor[]            = "#458588";
+static char titleselbordercolor[]        = "#458588";
+static char titleselfloatcolor[]         = "#458588";
 
-static char tagsnormfgcolor[]            = "#bbbbbb";
-static char tagsnormbgcolor[]            = "#222222";
-static char tagsnormbordercolor[]        = "#444444";
-static char tagsnormfloatcolor[]         = "#db8fd9";
+static char tagsnormfgcolor[]            = "#ebdbb2";
+static char tagsnormbgcolor[]            = "#282828";
+static char tagsnormbordercolor[]        = "#3c3836";
+static char tagsnormfloatcolor[]         = "#d65d0e";
 
-static char tagsselfgcolor[]             = "#eeeeee";
-static char tagsselbgcolor[]             = "#005577";
-static char tagsselbordercolor[]         = "#005577";
-static char tagsselfloatcolor[]          = "#005577";
+static char tagsselfgcolor[]             = "#ebdbb2";
+static char tagsselbgcolor[]             = "#458588";
+static char tagsselbordercolor[]         = "#458588";
+static char tagsselfloatcolor[]          = "#458588";
 
 static char hidnormfgcolor[]             = "#005577";
 static char hidselfgcolor[]              = "#227799";
@@ -794,13 +794,15 @@ static const char *volup[]    = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "
 static const char *voldown[]  = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL};
 static const char *volmute[]  = {"pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL};
 static const char *volpause[]  = {"playerctl", "play-pause", NULL};
-static const char *playnext[]  = {"playerctl", "next", NULL};
-static const char *playprev[]  = {"playerctl", "previous", NULL};
+static const char *playnext[]  = {"playerctl", "next", "&&", "pkill", NULL};
+static const char *playprev[]  = {"playerctl", "previous", "&&", "pkill", NULL};
 static const char *scrotselect[] = {"scrot", "--select", "/home/cb/Pictures/Screenshots/screenshot.png", NULL};
 static const char *scrot[] = {"scrot", "/home/cb/Pictures/Screenshots/screenshot.png", NULL};
 static const char *backlightup[] = {"xbacklight", "-inc", "10", NULL};
 static const char *backlightdown[] = {"xbacklight", "-dec", "10", NULL};
 static const char *lockcmd[] = {"xautolock", "-locknow", NULL};
+static const char *refreshvol[] = {"pkill", "-RTMIN+2", "dwmblocks", NULL};
+static const char *refreshcmus[] = {"pkill", "-RTMIN+1", "dwmblocks", NULL};
 
 #if BAR_STATUSCMD_PATCH
 #if BAR_DWMBLOCKS_PATCH
@@ -944,7 +946,7 @@ static Key keys[] = {
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_8,          incrohgaps,             {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_9,          incrovgaps,             {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_9,          incrovgaps,             {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_0,          togglegaps,             {0} },
+	/* { MODKEY|Mod4Mask,              XK_0,          togglegaps,             {0} }, */
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,          defaultgaps,            {0} },
 	#endif // VANITYGAPS_PATCH
 	{ MODKEY,                       XK_Tab,        view,                   {0} },
@@ -1042,8 +1044,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_0,          view,                   {.ui = ~SPTAGMASK } },
 	{ MODKEY|ShiftMask,             XK_0,          tag,                    {.ui = ~SPTAGMASK } },
 	#else
-	{ MODKEY,                       XK_0,          view,                   {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,          tag,                    {.ui = ~0 } },
+	/* { MODKEY,                       XK_0,          view,                   {.ui = ~0 } }, */
+	/* { MODKEY|ShiftMask,             XK_0,          tag,                    {.ui = ~0 } }, */
 	#endif // SCRATCHPAD_ALT_1_PATCH
 	{ MODKEY,                       XK_comma,      focusmon,               {.i = -1 } },
 	{ MODKEY,                       XK_period,     focusmon,               {.i = +1 } },
@@ -1194,11 +1196,15 @@ static Key keys[] = {
 	{ MODKEY,                       XK_Escape,     mpdcontrol,             {0} },
 	#endif // MPDCONTROL_PATCH
 	{ 0,							XF86XK_AudioRaiseVolume, spawn,		   {.v = volup} },
+	{ 0,							XF86XK_AudioRaiseVolume, spawn,		   {.v = refreshvol} },
 	{ 0,							XF86XK_AudioLowerVolume, spawn,		   {.v = voldown} },
+	{ 0,							XF86XK_AudioLowerVolume, spawn,		   {.v = refreshvol} },
 	{ 0,							XF86XK_AudioMute,		 spawn,		   {.v = volmute} },
 	{ 0,							XF86XK_AudioPlay,		 spawn,		   {.v = volpause} },
 	{ MODKEY,						XF86XK_AudioRaiseVolume, spawn,		   {.v = playnext} },
+	{ MODKEY,						XF86XK_AudioRaiseVolume, spawn,		   {.v = refreshcmus} },
 	{ MODKEY,						XF86XK_AudioLowerVolume, spawn,		   {.v = playprev} },
+	{ MODKEY,						XF86XK_AudioLowerVolume, spawn,		   {.v = refreshcmus} },
 	{ MODKEY,						XK_p,			spawn,				   {.v = scrotselect} },
 	{ 0,							XK_Print,		spawn,				   {.v = scrot} },
 	{ 0,							XF86XK_MonBrightnessUp,	spawn,		   {.v = backlightup} },
