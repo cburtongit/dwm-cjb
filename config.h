@@ -15,10 +15,10 @@ static const int swallowfloating         = 0;   /* 1 means swallow floating wind
 static int nomodbuttons                  = 1;   /* allow client mouse button bindings that have no modifier */
 #endif // NO_MOD_BUTTONS_PATCH
 #if VANITYGAPS_PATCH
-static const unsigned int gappih         = 10;  /* horizontal inner gap between windows */
+static const unsigned int gappih         = 8;  /* horizontal inner gap between windows */
 static const unsigned int gappiv         = 8;  /* vertical inner gap between windows */
-static const unsigned int gappoh         = 10;  /* horizontal outer gap between windows and screen edge */
-static const unsigned int gappov         = 10;  /* vertical outer gap between windows and screen edge */
+static const unsigned int gappoh         = 8;  /* horizontal outer gap between windows and screen edge */
+static const unsigned int gappov         = 8;  /* vertical outer gap between windows and screen edge */
 static const int smartgaps_fact          = 0;   /* gap factor when there is only one client; 0 = no gaps, 3 = 3x outer gaps */
 #endif // VANITYGAPS_PATCH
 #if AUTOSTART_PATCH
@@ -104,7 +104,7 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 #if BAR_PANGO_PATCH
 static const char font[]                 = "DejaVu Sans Mono Bold 10";
 #else
-static const char *fonts[]               = { "DejaVuSansMono:Bold:size=12", "JetBrainsMono:size=12"};
+static const char *fonts[]               = {"DejaVuSansMono:Bold:size=12", "JetBrainsMono:size=12", "JoyPixels:pixelsize=12:antialias=true"};
 #endif // BAR_PANGO_PATCH
 static const char dmenufont[]            = "JetBrainsMono:size=10";
 
@@ -115,7 +115,7 @@ static char c000000[]                    = "#000000"; // placeholder value
 static char normfgcolor[]                = "#ffffff";
 static char normbgcolor[]                = "#1d2021";
 static char normbordercolor[]            = "#3c3836";
-static char normfloatcolor[]             = "#d65d0e";
+static char normfloatcolor[]             = "#1d2021";
 
 static char selfgcolor[]                 = "#ffffff";
 static char selbgcolor[]                 = "#458588";
@@ -127,7 +127,7 @@ static char titlenormbgcolor[]           = "#1d2021";
 static char titlenormbordercolor[]       = "#3c3836";
 static char titlenormfloatcolor[]        = "#d65d0e";
 
-static char titleselfgcolor[]            = "#ffffff";
+static char titleselfgcolor[]            = "#1d2021";
 static char titleselbgcolor[]            = "#458588";
 static char titleselbordercolor[]        = "#458588";
 static char titleselfloatcolor[]         = "#458588";
@@ -137,7 +137,7 @@ static char tagsnormbgcolor[]            = "#1d2021";
 static char tagsnormbordercolor[]        = "#3c3836";
 static char tagsnormfloatcolor[]         = "#d65d0e";
 
-static char tagsselfgcolor[]             = "#ffffff";
+static char tagsselfgcolor[]             = "#1d2021";
 static char tagsselbgcolor[]             = "#458588";
 static char tagsselbordercolor[]         = "#458588";
 static char tagsselfloatcolor[]          = "#458588";
@@ -784,9 +784,10 @@ static const char *dmenucmd[] = {
 };
 static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[] = { "chromium", NULL };
-static const char *browserTwocmd[] = { "qutebrowser", NULL };
+static const char *browserTwocmd[] = { "brave", NULL };
 static const char *fmcmd[] = { "st", "-e", "ranger", NULL };
 static const char *cmuscmd[] = { "st", "-e", "cmus", NULL };
+static const char *spotify[] = { "spotify", NULL };
 static const char *telegramcmd[] = { "telegram-desktop", NULL };
 static const char *teamscmd[] = { "teams", NULL };
 static const char *mailcmd[] = { "thunderbird", NULL };
@@ -797,6 +798,7 @@ static const char *volpause[]  = {"playerctl", "play-pause", NULL};
 static const char *playnext[]  = {"playerctl", "next", "&&", "pkill", NULL};
 static const char *playprev[]  = {"playerctl", "previous", "&&", "pkill", NULL};
 static const char *scrotselect[] = {"scrot", "--select", "/home/cb/Pictures/Screenshots/screenshot.png", NULL};
+static const char *flameshot[] = {"flameshot", "gui", NULL};
 static const char *scrot[] = {"scrot", "/home/cb/Pictures/Screenshots/screenshot.png", NULL};
 static const char *backlightup[] = {"xbacklight", "-inc", "10", NULL};
 static const char *backlightdown[] = {"xbacklight", "-dec", "10", NULL};
@@ -938,14 +940,7 @@ static Key keys[] = {
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_i,          incrigaps,              {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_o,          incrogaps,              {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_o,          incrogaps,              {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_6,          incrihgaps,             {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_6,          incrihgaps,             {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_7,          incrivgaps,             {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_7,          incrivgaps,             {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_8,          incrohgaps,             {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_8,          incrohgaps,             {.i = -1 } },
-	{ MODKEY|Mod4Mask,              XK_9,          incrovgaps,             {.i = +1 } },
-	{ MODKEY|Mod4Mask|ShiftMask,    XK_9,          incrovgaps,             {.i = -1 } },
+	// 123123
 	/* { MODKEY|Mod4Mask,              XK_0,          togglegaps,             {0} }, */
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,          defaultgaps,            {0} },
 	#endif // VANITYGAPS_PATCH
@@ -1205,7 +1200,7 @@ static Key keys[] = {
 	{ MODKEY,						XF86XK_AudioRaiseVolume, spawn,		   {.v = refreshcmus} },
 	{ MODKEY,						XF86XK_AudioLowerVolume, spawn,		   {.v = playprev} },
 	{ MODKEY,						XF86XK_AudioLowerVolume, spawn,		   {.v = refreshcmus} },
-	{ MODKEY,						XK_p,			spawn,				   {.v = scrotselect} },
+	{ MODKEY,						XK_p,			spawn,				   {.v = flameshot} },
 	{ 0,							XK_Print,		spawn,				   {.v = scrot} },
 	{ 0,							XF86XK_MonBrightnessUp,	spawn,		   {.v = backlightup} },
 	{ 0,							XF86XK_MonBrightnessDown, spawn,	   {.v = backlightdown} },
