@@ -415,6 +415,7 @@ static const Rule rules[] = {
 	RULE(.wintype = WTYPE "TOOLBAR", .isfloating = 1)
 	RULE(.wintype = WTYPE "SPLASH", .isfloating = 1)
 	RULE(.class = "cmus", .tags = 1 << 5)
+	RULE(.class = "Spotify", .tags = 1 << 5)
 	RULE(.class = "telegram-desktop", .tags = 1 << 6)
 	RULE(.class = "Microsoft Teams - Preview", .tags = 1 << 7)
 	RULE(.class = "thunderbird", .tags = 1 << 10)
