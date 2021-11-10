@@ -114,7 +114,7 @@ static char c000000[]                    = "#000000"; // placeholder value
 #endif // BAR_FLEXWINTITLE_PATCH
 static char normfgcolor[]                = "#ffffff";
 static char normbgcolor[]                = "#1d2021";
-static char normbordercolor[]            = "#3c3836";
+static char normbordercolor[]            = "#1d2021";
 static char normfloatcolor[]             = "#1d2021";
 
 static char selfgcolor[]                 = "#ffffff";
@@ -124,13 +124,13 @@ static char selfloatcolor[]              = "#458588";
 
 static char titlenormfgcolor[]           = "#ffffff";
 static char titlenormbgcolor[]           = "#1d2021";
-static char titlenormbordercolor[]       = "#3c3836";
-static char titlenormfloatcolor[]        = "#d65d0e";
+static char titlenormbordercolor[]       = "#1d2021";
+static char titlenormfloatcolor[]        = "#1d2021";
 
-static char titleselfgcolor[]            = "#1d2021";
-static char titleselbgcolor[]            = "#458588";
-static char titleselbordercolor[]        = "#458588";
-static char titleselfloatcolor[]         = "#458588";
+static char titleselfgcolor[]            = "#ffffff";
+static char titleselbgcolor[]            = "#1d2021";
+static char titleselbordercolor[]        = "#1d2021";
+static char titleselfloatcolor[]         = "#1d2021";
 
 static char tagsnormfgcolor[]            = "#ffffff";
 static char tagsnormbgcolor[]            = "#1d2021";
@@ -788,7 +788,7 @@ static const char *browsercmd[] = { "chromium", NULL };
 static const char *browserTwocmd[] = { "brave", NULL };
 static const char *fmcmd[] = { "st", "-e", "ranger", NULL };
 static const char *cmuscmd[] = { "st", "-e", "cmus", NULL };
-static const char *spotify[] = { "spotify", NULL };
+//static const char *spotify[] = { "spotify", NULL };
 static const char *telegramcmd[] = { "telegram-desktop", NULL };
 static const char *teamscmd[] = { "teams", NULL };
 static const char *mailcmd[] = { "thunderbird", NULL };
@@ -798,7 +798,7 @@ static const char *volmute[]  = {"pactl", "set-sink-mute", "@DEFAULT_SINK@", "to
 static const char *volpause[]  = {"playerctl", "play-pause", NULL};
 static const char *playnext[]  = {"playerctl", "next", "&&", "pkill", NULL};
 static const char *playprev[]  = {"playerctl", "previous", "&&", "pkill", NULL};
-static const char *scrotselect[] = {"scrot", "--select", "/home/cb/Pictures/Screenshots/screenshot.png", NULL};
+//static const char *scrotselect[] = {"scrot", "--select", "/home/cb/Pictures/Screenshots/screenshot.png", NULL};
 static const char *flameshot[] = {"flameshot", "gui", NULL};
 static const char *scrot[] = {"scrot", "/home/cb/Pictures/Screenshots/screenshot.png", NULL};
 static const char *backlightup[] = {"xbacklight", "-inc", "10", NULL};
