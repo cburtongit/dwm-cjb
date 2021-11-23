@@ -5,7 +5,7 @@
 static const unsigned int borderpx       = 2;   /* border pixel of windows */
 static const int corner_radius           = 10;
 #else
-static const unsigned int borderpx       = 2;   /* border pixel of windows */
+static const unsigned int borderpx       = 1;   /* border pixel of windows */
 #endif // ROUNDED_CORNERS_PATCH
 static const unsigned int snap           = 8;  /* snap pixel */
 #if SWALLOW_PATCH
@@ -102,7 +102,8 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 #endif // MONOCLE_LAYOUT
 #endif // BAR_TABGROUPS_PATCH
 #if BAR_PANGO_PATCH
-static const char font[]                 = "DejaVu Sans Mono Bold 10";
+static const char font[]                 = "SF Mono 12";
+//static const char font[]                 = "DejaVu Sans Mono Bold 10";
 #else
 static const char *fonts[]               = {"DejaVuSansMono:Bold:size=12", "JetBrainsMono:size=12", "JoyPixels:pixelsize=12:antialias=true"};
 #endif // BAR_PANGO_PATCH
@@ -846,6 +847,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_Return,     riospawn,               {.v = termcmd } },
 	{ MODKEY,                       XK_s,          rioresize,              {0} },
 	#endif // RIODRAW_PATCH
+	{ MODKEY|Mod4Mask|ShiftMask,	XK_b,		   togglebar,			   {0} },
 	#if TAB_PATCH
 	{ MODKEY|ControlMask,           XK_b,          tabmode,                {-1} },
 	#endif // TAB_PATCH
@@ -876,6 +878,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Left,       rotatestack,            {.i = -1 } },
 	{ MODKEY|ShiftMask,				XK_Right,	   focusmaster,			   {0} },
 	{ MODKEY|ShiftMask,				XK_Left,	   focusmaster,			   {0} },
+	{ MODKEY,						XK_Tab,		   rotatestack,			   {.i = +1 } },
 	#endif // ROTATESTACK_PATCH
 	#if INPLACEROTATE_PATCH
 	{ MODKEY|Mod4Mask,              XK_j,          inplacerotate,          {.i = +2 } }, // same as rotatestack
@@ -887,6 +890,7 @@ static Key keys[] = {
 	{ MODKEY|ControlMask,           XK_j,          pushdown,               {0} },
 	{ MODKEY|ControlMask,           XK_k,          pushup,                 {0} },
 	#endif // PUSH_PATCH / PUSH_NO_MASTER_PATCH
+	{ MODKEY|Mod4Mask|ShiftMask,	XK_i,		   incnmaster,			   {.i = +1 } },
 	{ MODKEY,                       XK_minus,      setmfact,               {.f = -0.05} },
 	{ MODKEY,                       XK_equal,      setmfact,               {.f = +0.05} },
 	#if FLEXTILE_DELUXE_LAYOUT
@@ -941,11 +945,15 @@ static Key keys[] = {
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_i,          incrigaps,              {.i = -1 } },
 	{ MODKEY|Mod4Mask,              XK_o,          incrogaps,              {.i = +1 } },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_o,          incrogaps,              {.i = -1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,	XK_p,		   incrivgaps,			   {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,	XK_p,		   incrihgaps,			   {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,	XK_p,		   incrovgaps,			   {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,	XK_p,		   incrohgaps,			   {.i = +1 } },
 	// 123123
-	/* { MODKEY|Mod4Mask,              XK_0,          togglegaps,             {0} }, */
+	{ MODKEY,						XK_0,          togglegaps,             {0} },
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,          defaultgaps,            {0} },
 	#endif // VANITYGAPS_PATCH
-	{ MODKEY,                       XK_Tab,        view,                   {0} },
+	{ MODKEY|ShiftMask,				XK_Tab,        view,                   {0} },
 	#if SHIFTVIEW_PATCH
 	{ MODKEY|ShiftMask,             XK_Tab,        shiftview,              { .i = -1 } },
 	{ MODKEY|ShiftMask,             XK_backslash,  shiftview,              { .i = +1 } },
