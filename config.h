@@ -792,7 +792,7 @@ static const char *cmuscmd[] = { "st", "-e", "cmus", NULL };
 //static const char *spotify[] = { "spotify", NULL };
 static const char *telegramcmd[] = { "telegram-desktop", NULL };
 static const char *teamscmd[] = { "teams", NULL };
-static const char *mailcmd[] = { "thunderbird", NULL };
+static const char *mailcmd[] = { "geary", NULL };
 static const char *volup[]    = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL};
 static const char *voldown[]  = {"pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL};
 static const char *volmute[]  = {"pactl", "set-sink-mute", "@DEFAULT_SINK@", "toggle", NULL};
@@ -878,7 +878,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Left,       rotatestack,            {.i = -1 } },
 	{ MODKEY|ShiftMask,				XK_Right,	   focusmaster,			   {0} },
 	{ MODKEY|ShiftMask,				XK_Left,	   focusmaster,			   {0} },
-	{ MODKEY,						XK_Tab,		   rotatestack,			   {.i = +1 } },
+	{ MODKEY,                       XK_Tab,		   rotatestack,             {.i = +1 } },
+	{ MODKEY,						XK_Tab,		   focusmaster,			   {0} },
 	#endif // ROTATESTACK_PATCH
 	#if INPLACEROTATE_PATCH
 	{ MODKEY|Mod4Mask,              XK_j,          inplacerotate,          {.i = +2 } }, // same as rotatestack
