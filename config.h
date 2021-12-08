@@ -804,7 +804,7 @@ static const char *flameshot[] = {"flameshot", "gui", NULL};
 static const char *scrot[] = {"scrot", "/home/cb/Pictures/Screenshots/screenshot.png", NULL};
 static const char *backlightup[] = {"xbacklight", "-inc", "10", NULL};
 static const char *backlightdown[] = {"xbacklight", "-dec", "10", NULL};
-static const char *lockcmd[] = {"xautolock", "-locknow", NULL};
+static const char *lockcmd[] = {"slock", NULL};
 static const char *refreshvol[] = {"pkill", "-RTMIN+2", "dwmblocks", NULL};
 static const char *refreshcmus[] = {"pkill", "-RTMIN+1", "dwmblocks", NULL};
 
