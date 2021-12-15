@@ -2,7 +2,7 @@
 
 /* appearance */
 #if ROUNDED_CORNERS_PATCH
-static const unsigned int borderpx       = 2;   /* border pixel of windows */
+static const unsigned int borderpx       = 1;   /* border pixel of windows */
 static const int corner_radius           = 10;
 #else
 static const unsigned int borderpx       = 1;   /* border pixel of windows */
@@ -29,8 +29,8 @@ static const char localshare[]           = ".local/share";
 #endif // AUTOSTART_PATCH
 #if BAR_ANYBAR_PATCH
 static const int usealtbar               = 1;        /* 1 means use non-dwm status bar */
-static const char *altbarclass           = "Polybar"; /* Alternate bar class name */
-static const char *altbarcmd             = "$HOME/bar.sh"; /* Alternate bar launch command */
+static const char *altbarclass           = "lemonbar"; /* Alternate bar class name */
+static const char *altbarcmd             = "$HOME/.config/lemonbar/bar.sh"; /* Alternate bar launch command */
 #endif // BAR_ANYBAR_PATCH
 #if BAR_HOLDBAR_PATCH
 static const int showbar                 = 0;   /* 0 means no bar */
@@ -105,7 +105,7 @@ static void (*bartabmonfns[])(Monitor *) = { NULL /* , customlayoutfn */ };
 static const char font[]                 = "SF Mono 12";
 //static const char font[]                 = "DejaVu Sans Mono Bold 10";
 #else
-static const char *fonts[]               = {"DejaVuSansMono:Bold:size=12", "JetBrainsMono:size=12", "JoyPixels:pixelsize=12:antialias=true"};
+static const char *fonts[]               = {"JetBrainsMono:Bold:size=12","DejaVuSansMono:Bold:size=12", "JoyPixels:pixelsize=12:antialias=true"};
 #endif // BAR_PANGO_PATCH
 static const char dmenufont[]            = "JetBrainsMono:size=10";
 
@@ -114,34 +114,34 @@ static char c000000[]                    = "#000000"; // placeholder value
 #if BAR_FLEXWINTITLE_PATCH
 #endif // BAR_FLEXWINTITLE_PATCH
 static char normfgcolor[]                = "#ffffff";
-static char normbgcolor[]                = "#1d2021";
-static char normbordercolor[]            = "#1d2021";
-static char normfloatcolor[]             = "#1d2021";
+static char normbgcolor[]                = "#282828";
+static char normbordercolor[]            = "#282828";
+static char normfloatcolor[]             = "#282828";
 
-static char selfgcolor[]                 = "#ffffff";
-static char selbgcolor[]                 = "#458588";
-static char selbordercolor[]             = "#458588";
-static char selfloatcolor[]              = "#458588";
+static char selfgcolor[]                 = "#282828";
+static char selbgcolor[]                 = "#fe8019";
+static char selbordercolor[]             = "#fe8019";
+static char selfloatcolor[]              = "#fe8019";
 
 static char titlenormfgcolor[]           = "#ffffff";
-static char titlenormbgcolor[]           = "#1d2021";
-static char titlenormbordercolor[]       = "#1d2021";
-static char titlenormfloatcolor[]        = "#1d2021";
+static char titlenormbgcolor[]           = "#282828";
+static char titlenormbordercolor[]       = "#282828";
+static char titlenormfloatcolor[]        = "#282828";
 
 static char titleselfgcolor[]            = "#ffffff";
-static char titleselbgcolor[]            = "#1d2021";
-static char titleselbordercolor[]        = "#1d2021";
-static char titleselfloatcolor[]         = "#1d2021";
+static char titleselbgcolor[]            = "#282828";
+static char titleselbordercolor[]        = "#282828";
+static char titleselfloatcolor[]         = "#282828";
 
 static char tagsnormfgcolor[]            = "#ffffff";
-static char tagsnormbgcolor[]            = "#1d2021";
+static char tagsnormbgcolor[]            = "#282828";
 static char tagsnormbordercolor[]        = "#3c3836";
 static char tagsnormfloatcolor[]         = "#d65d0e";
 
-static char tagsselfgcolor[]             = "#1d2021";
-static char tagsselbgcolor[]             = "#458588";
-static char tagsselbordercolor[]         = "#458588";
-static char tagsselfloatcolor[]          = "#458588";
+static char tagsselfgcolor[]             = "#282828";
+static char tagsselbgcolor[]             = "#fe8019";
+static char tagsselbordercolor[]         = "#fe8019";
+static char tagsselfloatcolor[]          = "#fe8019";
 
 static char hidnormfgcolor[]             = "#005577";
 static char hidselfgcolor[]              = "#227799";
